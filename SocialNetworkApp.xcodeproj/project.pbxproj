@@ -71,6 +71,7 @@
 		C83695231E675F5800CA97D8 /* RoundBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
 		C83695251E675FB000CA97D8 /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
 		C83695271E6760D000CA97D8 /* FancyBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyBtn.swift; sourceTree = "<group>"; };
+		C836952B1E6889BF00CA97D8 /* SocialNetworkApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialNetworkApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +137,7 @@
 		C83694E91E67431500CA97D8 /* SocialNetworkApp */ = {
 			isa = PBXGroup;
 			children = (
+				C836952B1E6889BF00CA97D8 /* SocialNetworkApp.entitlements */,
 				C836951E1E675E6A00CA97D8 /* Util */,
 				C836951D1E6745CA00CA97D8 /* Model */,
 				C836951C1E6745C400CA97D8 /* View */,
@@ -294,6 +296,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2P797DB3HH;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					C83694FA1E67431500CA97D8 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -660,6 +667,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2P797DB3HH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SocialNetworkApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.SocialNetworkApp;
@@ -674,6 +685,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2P797DB3HH;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SocialNetworkApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citi.madan.SocialNetworkApp;
