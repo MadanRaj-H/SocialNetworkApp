@@ -24,6 +24,8 @@
 		C83695261E675FB000CA97D8 /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83695251E675FB000CA97D8 /* FancyField.swift */; };
 		C83695281E6760D000CA97D8 /* FancyBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83695271E6760D000CA97D8 /* FancyBtn.swift */; };
 		C8CF3FD61E6AE7A700C22A13 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FD51E6AE7A700C22A13 /* FeedVC.swift */; };
+		C8CF3FD81E6B042600C22A13 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FD71E6B042600C22A13 /* RoundImageView.swift */; };
+		C8CF3FDB1E6B249100C22A13 /* feedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FDA1E6B249100C22A13 /* feedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		C83695271E6760D000CA97D8 /* FancyBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyBtn.swift; sourceTree = "<group>"; };
 		C836952B1E6889BF00CA97D8 /* SocialNetworkApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialNetworkApp.entitlements; sourceTree = "<group>"; };
 		C8CF3FD51E6AE7A700C22A13 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		C8CF3FD71E6B042600C22A13 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		C8CF3FDA1E6B249100C22A13 /* feedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 		C83694E91E67431500CA97D8 /* SocialNetworkApp */ = {
 			isa = PBXGroup;
 			children = (
+				C8CF3FD91E6B247500C22A13 /* Cells */,
 				C836952B1E6889BF00CA97D8 /* SocialNetworkApp.entitlements */,
 				C836951E1E675E6A00CA97D8 /* Util */,
 				C836951D1E6745CA00CA97D8 /* Model */,
@@ -188,6 +193,7 @@
 				C83695231E675F5800CA97D8 /* RoundBtn.swift */,
 				C83695251E675FB000CA97D8 /* FancyField.swift */,
 				C83695271E6760D000CA97D8 /* FancyBtn.swift */,
+				C8CF3FD71E6B042600C22A13 /* RoundImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -205,6 +211,14 @@
 				C836951F1E675E7C00CA97D8 /* Constants.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		C8CF3FD91E6B247500C22A13 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C8CF3FDA1E6B249100C22A13 /* feedCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		F1517CAFA39EF408576538A7 /* Pods */ = {
@@ -511,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83695261E675FB000CA97D8 /* FancyField.swift in Sources */,
+				C8CF3FDB1E6B249100C22A13 /* feedCell.swift in Sources */,
 				C83694ED1E67431500CA97D8 /* SignInVC.swift in Sources */,
 				C83695241E675F5800CA97D8 /* RoundBtn.swift in Sources */,
 				C83694EB1E67431500CA97D8 /* AppDelegate.swift in Sources */,
@@ -518,6 +533,7 @@
 				C83695221E675EBC00CA97D8 /* FancyView.swift in Sources */,
 				C83695201E675E7C00CA97D8 /* Constants.swift in Sources */,
 				C83695281E6760D000CA97D8 /* FancyBtn.swift in Sources */,
+				C8CF3FD81E6B042600C22A13 /* RoundImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,11 +18,11 @@ class FancyField: UITextField {
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect { // For placeholder
-        return bounds.offsetBy(dx: 10.0, dy: 3.0);
+        return bounds.offsetBy(dx: 10.0, dy: 0.0);
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect { // For editing
-        return bounds.offsetBy(dx: 10.0, dy: 3.0);
+        return bounds.offsetBy(dx: 10.0, dy: 0.0);
     }
     
 }
