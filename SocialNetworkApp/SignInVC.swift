@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
 
@@ -19,17 +20,30 @@ class SignInVC: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        //Segues can be performed only after view occured
+        if let _ = KeychainWrapper.standard.string(forKey: USER_KEY_ID) {
+            performSegue(withIdentifier: "goToFeed", sender: nil)
+        }
+    }
+    
     @IBAction func signInBtnPressed(_ sender: UIButton) {
         if let email = emailTextField.text , let pwd = passwordTextField.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (result, error) in
                 if error == nil {
                     print("Email user authenticated");
+                    if let user = result {
+                        self.completeSignIn(user.uid);
+                    }
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (result, error) in
                         if error != nil {
                             print("Unable to login with firebase user email" + (error?.localizedDescription)!)
                         } else {
                             print("user created succesfully with email");
+                            if let user = result {
+                                self.completeSignIn(user.uid);
+                            }
                         }
                     })
                 }
@@ -57,8 +71,16 @@ class SignInVC: UIViewController {
                 print("Unable to login to FIR Auth" + (error?.localizedDescription)!)
             }else {
                 print("Successfully authenticated with FIR");
+                if let user = result {
+                    self.completeSignIn(user.uid);
+                }
             }
         })
+    }
+    
+    func completeSignIn(_ id : String) {
+        KeychainWrapper.standard.set(id, forKey: USER_KEY_ID)
+        performSegue(withIdentifier: "goToFeed", sender: nil)
     }
 }
 

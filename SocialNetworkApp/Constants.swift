@@ -9,3 +9,4 @@
 import UIKit
 
 let SHADOW_GRAY : CGFloat = 155.0/255.0
+let USER_KEY_ID = "uid"

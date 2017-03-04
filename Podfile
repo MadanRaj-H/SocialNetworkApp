@@ -11,6 +11,7 @@ target 'SocialNetworkApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'FBSDKLoginKit'
+  pod 'SwiftKeychainWrapper'
   target 'SocialNetworkAppTests' do
     inherit! :search_paths
     # Pods for testing

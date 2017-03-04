@@ -23,6 +23,7 @@
 		C83695241E675F5800CA97D8 /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83695231E675F5800CA97D8 /* RoundBtn.swift */; };
 		C83695261E675FB000CA97D8 /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83695251E675FB000CA97D8 /* FancyField.swift */; };
 		C83695281E6760D000CA97D8 /* FancyBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83695271E6760D000CA97D8 /* FancyBtn.swift */; };
+		C8CF3FD61E6AE7A700C22A13 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FD51E6AE7A700C22A13 /* FeedVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		C83695251E675FB000CA97D8 /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
 		C83695271E6760D000CA97D8 /* FancyBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyBtn.swift; sourceTree = "<group>"; };
 		C836952B1E6889BF00CA97D8 /* SocialNetworkApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialNetworkApp.entitlements; sourceTree = "<group>"; };
+		C8CF3FD51E6AE7A700C22A13 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				C83694EC1E67431500CA97D8 /* SignInVC.swift */,
+				C8CF3FD51E6AE7A700C22A13 /* FeedVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				C83694ED1E67431500CA97D8 /* SignInVC.swift in Sources */,
 				C83695241E675F5800CA97D8 /* RoundBtn.swift in Sources */,
 				C83694EB1E67431500CA97D8 /* AppDelegate.swift in Sources */,
+				C8CF3FD61E6AE7A700C22A13 /* FeedVC.swift in Sources */,
 				C83695221E675EBC00CA97D8 /* FancyView.swift in Sources */,
 				C83695201E675E7C00CA97D8 /* Constants.swift in Sources */,
 				C83695281E6760D000CA97D8 /* FancyBtn.swift in Sources */,
