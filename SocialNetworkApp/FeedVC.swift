@@ -18,6 +18,7 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
 
     var posts = [Post]()
     var imagePicker : UIImagePickerController!
+    var selectedImage = false;
     
     static var imageCache : NSCache<NSString,UIImage> = NSCache()
     
@@ -46,6 +47,30 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
         
     }
 
+    @IBAction func addPostBtnPressed(_ sender: Any) {
+        guard let caption = captionTextField.text , caption != "" else {
+            print("caption is must")
+            return
+        }
+        
+        guard let img = addImage.image , self.selectedImage != false else {
+            print("image is must")
+            return
+        }
+        
+        if let imageData  = UIImageJPEGRepresentation(img, 0.2) {
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            let uuid = NSUUID().uuidString
+            DatabaseService.ds.STORAGE_REF_POST_PICS.child(uuid).put(imageData, metadata: metaData, completion: { (metaData, error) in
+                if error != nil {
+                    print("Error while uploading")
+                } else {
+                    print("Successfully uploaded")
+                }
+            })
+        }
+    }
     @IBAction func addImageBtnTapped(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
@@ -53,6 +78,7 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImage.image = image;
+            selectedImage = true
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }

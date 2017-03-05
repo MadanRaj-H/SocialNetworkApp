@@ -226,13 +226,17 @@
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-post" translatesAutoresizingMaskIntoConstraints="NO" id="yJl-6y-eTV" customClass="RoundImageView" customModule="SocialNetworkApp" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-post" translatesAutoresizingMaskIntoConstraints="NO" id="yJl-6y-eTV" customClass="RoundImageView" customModule="SocialNetworkApp" customModuleProvider="target">
                                                 <rect key="frame" x="277" y="0.0" width="50" height="50"/>
                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="5Ry-dy-Aa3"/>
                                                     <constraint firstAttribute="width" constant="50" id="U0B-ca-GZU"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="w7q-BZ-ABh" appends="YES" id="4yS-Je-NTj"/>
+                                                </connections>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -386,6 +390,11 @@
                 <tapGestureRecognizer id="gc5-3u-7DT">
                     <connections>
                         <action selector="addImageBtnTapped:" destination="GA2-VU-gcr" id="j8a-Zz-GdU"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="w7q-BZ-ABh">
+                    <connections>
+                        <action selector="addPostBtnPressed:" destination="GA2-VU-gcr" id="Nys-i9-iMN"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
