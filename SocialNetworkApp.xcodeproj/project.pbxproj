@@ -26,6 +26,8 @@
 		C8CF3FD61E6AE7A700C22A13 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FD51E6AE7A700C22A13 /* FeedVC.swift */; };
 		C8CF3FD81E6B042600C22A13 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FD71E6B042600C22A13 /* RoundImageView.swift */; };
 		C8CF3FDB1E6B249100C22A13 /* feedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FDA1E6B249100C22A13 /* feedCell.swift */; };
+		C8CF3FDE1E6B3A0700C22A13 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FDD1E6B3A0700C22A13 /* DatabaseService.swift */; };
+		C8CF3FE01E6B459B00C22A13 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF3FDF1E6B459B00C22A13 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		C8CF3FD51E6AE7A700C22A13 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		C8CF3FD71E6B042600C22A13 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		C8CF3FDA1E6B249100C22A13 /* feedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedCell.swift; sourceTree = "<group>"; };
+		C8CF3FDD1E6B3A0700C22A13 /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		C8CF3FDF1E6B459B00C22A13 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +147,9 @@
 		C83694E91E67431500CA97D8 /* SocialNetworkApp */ = {
 			isa = PBXGroup;
 			children = (
-				C8CF3FD91E6B247500C22A13 /* Cells */,
 				C836952B1E6889BF00CA97D8 /* SocialNetworkApp.entitlements */,
+				C8CF3FDC1E6B39E900C22A13 /* Service */,
+				C8CF3FD91E6B247500C22A13 /* Cells */,
 				C836951E1E675E6A00CA97D8 /* Util */,
 				C836951D1E6745CA00CA97D8 /* Model */,
 				C836951C1E6745C400CA97D8 /* View */,
@@ -201,6 +206,7 @@
 		C836951D1E6745CA00CA97D8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C8CF3FDF1E6B459B00C22A13 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -219,6 +225,14 @@
 				C8CF3FDA1E6B249100C22A13 /* feedCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		C8CF3FDC1E6B39E900C22A13 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C8CF3FDD1E6B3A0700C22A13 /* DatabaseService.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		F1517CAFA39EF408576538A7 /* Pods */ = {
@@ -527,6 +541,7 @@
 				C83695261E675FB000CA97D8 /* FancyField.swift in Sources */,
 				C8CF3FDB1E6B249100C22A13 /* feedCell.swift in Sources */,
 				C83694ED1E67431500CA97D8 /* SignInVC.swift in Sources */,
+				C8CF3FE01E6B459B00C22A13 /* Post.swift in Sources */,
 				C83695241E675F5800CA97D8 /* RoundBtn.swift in Sources */,
 				C83694EB1E67431500CA97D8 /* AppDelegate.swift in Sources */,
 				C8CF3FD61E6AE7A700C22A13 /* FeedVC.swift in Sources */,
@@ -534,6 +549,7 @@
 				C83695201E675E7C00CA97D8 /* Constants.swift in Sources */,
 				C83695281E6760D000CA97D8 /* FancyBtn.swift in Sources */,
 				C8CF3FD81E6B042600C22A13 /* RoundImageView.swift in Sources */,
+				C8CF3FDE1E6B3A0700C22A13 /* DatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

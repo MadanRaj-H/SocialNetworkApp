@@ -33,7 +33,8 @@ class SignInVC: UIViewController {
                 if error == nil {
                     print("Email user authenticated");
                     if let user = result {
-                        self.completeSignIn(user.uid);
+                        let userData = ["provider":result?.providerID]
+                        self.completeSignIn(user.uid, userData: userData as! Dictionary<String, String>)
                     }
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (result, error) in
@@ -42,7 +43,8 @@ class SignInVC: UIViewController {
                         } else {
                             print("user created succesfully with email");
                             if let user = result {
-                                self.completeSignIn(user.uid);
+                                let userData = ["provider":result?.providerID]
+                                self.completeSignIn(user.uid, userData: userData as! Dictionary<String, String>)
                             }
                         }
                     })
@@ -72,13 +74,15 @@ class SignInVC: UIViewController {
             }else {
                 print("Successfully authenticated with FIR");
                 if let user = result {
-                    self.completeSignIn(user.uid);
+                    let userData = ["provider":credential.provider]
+                    self.completeSignIn(user.uid, userData: userData)
                 }
             }
         })
     }
     
-    func completeSignIn(_ id : String) {
+    func completeSignIn(_ id : String, userData : Dictionary<String,String>) {
+        DatabaseService.ds.connectToFirDBUsers(uid: id, userData: userData)
         KeychainWrapper.standard.set(id, forKey: USER_KEY_ID)
         performSegue(withIdentifier: "goToFeed", sender: nil)
     }

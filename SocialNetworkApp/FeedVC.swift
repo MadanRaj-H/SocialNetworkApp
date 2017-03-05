@@ -14,13 +14,31 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var tableView : UITableView!
 
+    var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        DatabaseService.ds.DB_BASE_POSTS.observe(.value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let postDict = snap.value as? Dictionary<String,Any>{
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)
+                    }
+                }
+                self.tableView.reloadData()
+            }
+        })
+        
+        
     }
 
     @IBAction func signOutBtnPressed(_ sender: AnyObject) {
+        //either add button on top of it or add tap gesture recognizer and make sure user interaction is enabled
         let value = KeychainWrapper.standard.removeObject(forKey: USER_KEY_ID)
         print("User key removed from keychain \(value)")
         try! FIRAuth.auth()?.signOut()
@@ -32,10 +50,17 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! feedCell
+        if let cell =  tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as? feedCell {
+            let post = self.posts[indexPath.row]
+            print("post : \(post.likes)")
+            cell.configureCell(post: post)
+            return cell;
+        } else {
+            return feedCell()
+        }
     }
 }

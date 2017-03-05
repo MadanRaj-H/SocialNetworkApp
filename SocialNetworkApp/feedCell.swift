@@ -16,14 +16,18 @@ class feedCell: UITableViewCell {
     @IBOutlet weak var postedTextView : UITextView!
     @IBOutlet weak var likes : UILabel!
     @IBOutlet weak var likesImage : UIImageView!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configureCell(post : Post) {
+        self.postedTextView.text = post.caption
+        self.likes.text = String(post.likes)
     }
 
 }
