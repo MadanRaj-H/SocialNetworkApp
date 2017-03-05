@@ -11,6 +11,7 @@ import Foundation
 import Firebase
 
 let DB_BASE = FIRDatabase.database().reference()
+let STORAGE_BASE = FIRStorage.storage().reference()
 
 class DatabaseService {
     
@@ -19,6 +20,12 @@ class DatabaseService {
     private var _REF_DB_BASE = DB_BASE
     private var _REF_DB_USER = DB_BASE.child("users")
     private var _REF_DB_POSTS = DB_BASE.child("posts")
+    
+    private var _STORAGE_REF_POST_PICS = STORAGE_BASE.child("post-pics");
+    
+    var STORAGE_REF_POST_PICS : FIRStorageReference {
+        return _STORAGE_REF_POST_PICS
+    }
     
     var REF_DB_BASE : FIRDatabaseReference {
         return _REF_DB_BASE

@@ -19,6 +19,8 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
     var posts = [Post]()
     var imagePicker : UIImagePickerController!
     
+    static var imageCache : NSCache<NSString,UIImage> = NSCache()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -74,7 +76,11 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
         if let cell =  tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as? feedCell {
             let post = self.posts[indexPath.row]
             print("post : \(post.likes)")
-            cell.configureCell(post: post)
+            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString) {
+                cell.configureCell(post: post, img: img)
+            } else {
+               cell.configureCell(post: post)
+            }
             return cell;
         } else {
             return feedCell()
