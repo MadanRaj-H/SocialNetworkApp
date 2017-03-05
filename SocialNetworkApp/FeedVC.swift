@@ -33,6 +33,7 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
         
         DatabaseService.ds.DB_BASE_POSTS.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                self.posts.removeAll()
                 for snap in snapshot {
                     if let postDict = snap.value as? Dictionary<String,Any>{
                         let key = snap.key
@@ -67,10 +68,31 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
                     print("Error while uploading")
                 } else {
                     print("Successfully uploaded")
+                    let url = metaData?.downloadURL()?.absoluteString
+                    self.postToFirebaseDatabase(url: url!)
                 }
             })
         }
     }
+    
+    func postToFirebaseDatabase(url : String) {
+        let post : Dictionary<String,AnyObject> = [
+            "caption" : self.captionTextField.text as AnyObject,
+            "imageURL" : url as AnyObject,
+            "likes" : 0 as AnyObject
+        ]
+        
+        
+        let postId = DatabaseService.ds.DB_BASE_POSTS.childByAutoId()
+        postId.setValue(post)
+        
+        captionTextField.text = ""
+        selectedImage = false
+        addImage.image = UIImage(named: "add-image")
+        
+      //  tableView.reloadData()
+    }
+    
     @IBAction func addImageBtnTapped(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
