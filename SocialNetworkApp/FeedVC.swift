@@ -10,16 +10,23 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView : UITableView!
+    @IBOutlet weak var addImage: RoundImageView!
+    @IBOutlet weak var captionTextField: UITextField!
 
     var posts = [Post]()
+    var imagePicker : UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
         
         DatabaseService.ds.DB_BASE_POSTS.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -37,6 +44,16 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         
     }
 
+    @IBAction func addImageBtnTapped(_ sender: Any) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            addImage.image = image;
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
     @IBAction func signOutBtnPressed(_ sender: AnyObject) {
         //either add button on top of it or add tap gesture recognizer and make sure user interaction is enabled
         let value = KeychainWrapper.standard.removeObject(forKey: USER_KEY_ID)
