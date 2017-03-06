@@ -20,6 +20,8 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
     var imagePicker : UIImagePickerController!
     var selectedImage = false;
     
+    var firstRun = false;
+    
     static var imageCache : NSCache<NSString,UIImage> = NSCache()
     
     override func viewDidLoad() {
@@ -31,9 +33,10 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
-        DatabaseService.ds.DB_BASE_POSTS.observe(.value, with: { (snapshot) in
+        DatabaseService.ds.DB_BASE_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
+            print("MadanRaj value");
+            self.posts.removeAll()
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                self.posts.removeAll()
                 for snap in snapshot {
                     if let postDict = snap.value as? Dictionary<String,Any>{
                         let key = snap.key
@@ -42,9 +45,39 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
                     }
                 }
                 self.tableView.reloadData()
+                self.firstRun = true;
             }
         })
         
+        DatabaseService.ds.DB_BASE_POSTS.observe(.childChanged, with: { (snapshot) in
+            let index =  self.posts.index(where: {(item) -> Bool in item.postKey == snapshot.key})
+            print("MadanRaj changed \(index)");
+            let indexPath = IndexPath(row: index!, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .none);
+        })
+        
+        DatabaseService.ds.DB_BASE_POSTS.observe(.childAdded, with: { (snapshot) in
+            if self.firstRun == true {
+                print("MadanRaj child added");
+                if let postDict = snapshot.value as? Dictionary<String,Any>{
+                    let key = snapshot.key
+                    let post = Post(postKey: key, postData: postDict)
+                    self.posts.insert(post, at: 0);
+                }
+                self.tableView.reloadData()
+            }
+        })
+        
+        DatabaseService.ds.DB_BASE_POSTS.observe(.childRemoved, with: { (snapshot) in
+            print("MadanRaj child remvoed");
+            let key = snapshot.key
+            self.posts = self.posts.filter{$0.postKey != key}
+            self.tableView.reloadData()
+        })
+//
+//        DatabaseService.ds.DB_BASE_POSTS.observe(.childMoved, with: { (snapshot) in
+//            print(snapshot.value);
+//        })
         
     }
 
@@ -124,6 +157,8 @@ class FeedVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIImage
         if let cell =  tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as? feedCell {
             let post = self.posts[indexPath.row]
             print("post : \(post.likes)")
+            cell.likesImage.image = nil;
+            cell.postedImage.image = nil;
             if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString) {
                 cell.configureCell(post: post, img: img)
             } else {
